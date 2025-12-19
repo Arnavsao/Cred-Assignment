@@ -1,0 +1,348 @@
+/* ===== HEADER ===== */
+.dashboard-header {
+  background: var(--primary-color);
+  color: white;
+  padding: 0 24px;
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.dashboard-header h1 {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.user-info:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.avatar-small {
+  font-size: 28px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 50%;
+  line-height: 1;
+}
+
+.user-name {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* ===== HAMBURGER MENU ===== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* ===== SIDEBAR OVERLAY ===== */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  backdrop-filter: blur(2px);
+}
+
+/* ===== NAVIGATION SIDEBAR ===== */
+.dashboard-nav {
+  background: var(--card-bg);
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--header-height));
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  padding: 0;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+  overflow-y: auto;
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+.nav-header {
+  display: none;
+  padding: 20px;
+  border-bottom: 1px solid var(--border-color);
+  justify-content: flex-end;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 36px;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.close-btn:hover {
+  background: var(--hover-bg);
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+}
+
+.dashboard-nav button {
+  width: 100%;
+  padding: 16px 24px;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-left: 4px solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.dashboard-nav button:hover {
+  background: var(--hover-bg);
+}
+
+.dashboard-nav button.active {
+  background: var(--primary-light);
+  border-left-color: var(--primary-color);
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.nav-icon {
+  font-size: 22px;
+  width: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: 16px 20px;
+}
+
+.nav-group-info {
+  padding: 14px 24px;
+  background: var(--primary-light);
+  border-left: 4px solid var(--primary-color);
+  margin: 8px 0;
+}
+
+.nav-group-info p {
+  color: var(--primary-color);
+  font-weight: 600;
+  margin: 0;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.logout-nav-btn {
+  color: var(--error-color) !important;
+  margin-top: 8px;
+}
+
+.logout-nav-btn:hover {
+  background: rgba(255, 107, 107, 0.1) !important;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .dashboard-header {
+    padding: 0 16px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 16px;
+  }
+
+  .user-name {
+    display: none;
+  }
+
+  .avatar-small {
+    font-size: 24px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .user-info {
+    padding: 6px 12px;
+  }
+
+  .dashboard-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    transform: translateX(-100%);
+    box-shadow: none;
+  }
+
+  .dashboard-nav.mobile-open {
+    transform: translateX(0);
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .sidebar-overlay {
+    display: block;
+  }
+
+  .nav-header {
+    display: flex;
+  }
+
+  .nav-links {
+    padding: 0 0 24px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-header h1 {
+    font-size: 14px;
+  }
+
+  .dashboard-nav {
+    width: 80%;
+    max-width: 300px;
+  }
+
+  .avatar-small {
+    font-size: 20px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* ===== CUSTOM SCROLLBAR FOR SIDEBAR ===== */
+.dashboard-nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dashboard-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dashboard-nav::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+.dashboard-nav::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Header Title and Group Badge */
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.group-badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+  .header-title {
+    gap: 8px;
+  }
+  
+  .group-badge {
+    font-size: 12px;
+    padding: 4px 12px;
+    max-width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .group-badge {
+    display: none;
+  }
+}
