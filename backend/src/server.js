@@ -29,20 +29,76 @@ app.use('/api/expenses', expenseRoutes);
 app.use('/api/balances', balanceRoutes);
 app.use('/api/settlements', settlementRoutes);
 
-// Health check route
+/**
+ * Root route handler
+ * 
+ * @description
+ * Provides API information and available endpoints
+ * 
+ * @route GET /
+ * @access Public
+ */
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Welcome to ContriPlz - Expense Sharing API',
+    version: '1.0.0',
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development',
+    endpoints: {
+      health: '/api/health',
+      users: '/api/users',
+      groups: '/api/groups',
+      expenses: '/api/expenses',
+      balances: '/api/balances',
+      settlements: '/api/settlements',
+    },
+    documentation: 'See README.md for detailed API documentation',
+  });
+});
+
+/**
+ * Health check route
+ * 
+ * @description
+ * Simple health check endpoint to verify server is running
+ * 
+ * @route GET /api/health
+ * @access Public
+ */
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     success: true,
     message: 'Server is running',
     timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    environment: process.env.NODE_ENV || 'development',
   });
 });
 
-// 404 handler
+/**
+ * 404 handler for unmatched routes
+ * 
+ * @description
+ * Catches all routes that don't match any defined endpoint
+ * 
+ * @access Public
+ */
 app.use((req, res) => {
   res.status(404).json({
     success: false,
     message: 'Route not found',
+    path: req.originalUrl,
+    method: req.method,
+    availableEndpoints: {
+      root: '/',
+      health: '/api/health',
+      users: '/api/users',
+      groups: '/api/groups',
+      expenses: '/api/expenses',
+      balances: '/api/balances',
+      settlements: '/api/settlements',
+    },
   });
 });
 
